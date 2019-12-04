@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-demo
+  labels:
+    name: flask-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: flask-demo
+  template:
+    metadata:
+      name: flask-demo
+      labels:
+        name: flask-demo
+    spec:
+      containers:
+        - name: flask-demo
+          image: marcstreeter/pyhello:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DEBUG_MODE
+              value: "1"
